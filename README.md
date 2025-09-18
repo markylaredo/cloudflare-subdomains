@@ -65,10 +65,16 @@ This script will guide you through:
 
 You can also set up GitHub integration directly:
 
-1. Create a new repository on GitHub
+1. Create a new repository on GitHub:
+   - Go to https://github.com/new
+   - Enter "cloudflare-subdomains" as the repository name
+   - Choose Public or Private
+   - Make sure to NOT initialize with a README
+   - Click "Create repository"
+
 2. Run the following commands:
    ```bash
-   git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
+   git remote add origin https://github.com/YOUR_USERNAME/cloudflare-subdomains.git
    git branch -M main
    git push -u origin main
    ```
@@ -84,6 +90,13 @@ This script will:
 1. Check the current remote URL
 2. Help you fix it if it's malformed
 3. Update it with your correct GitHub username
+
+### Pushing Changes to GitHub
+
+After setting up the remote repository, push your changes:
+```bash
+git push -u origin main
+```
 
 ### How It Works
 
