@@ -124,6 +124,20 @@ This script shows:
 - Configured subdomains
 - Remote repository information
 
+### System Verification
+
+To verify that all components of the system are working correctly:
+```bash
+./verify-system.sh
+```
+
+This script checks:
+- All required script files
+- Configuration files
+- Git repository status
+- Configured subdomains
+- GitHub integration
+
 ## How it works
 
 1. The `subdomains.json` file contains a list of all your subdomains and their corresponding services
