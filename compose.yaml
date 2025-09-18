@@ -1,0 +1,22 @@
+
+# services:
+#   cloudflared:
+#     container_name: solodevmark
+#     image: cloudflare/cloudflared:latest
+#     command: tunnel --no-autoupdate run --token ${CLOUDFLARED_TOKEN}
+#     restart: unless-stopped
+#     network_mode: host
+ 
+
+services:
+  cloudflared:
+    container_name: solodevmark
+    image: cloudflare/cloudflared:latest
+    command: tunnel --no-autoupdate run
+    volumes:
+      - ./config:/etc/cloudflared
+    # extra_hosts:
+    #   - "host.docker.internal:host-gateway"
+    network_mode: host
+    restart: unless-stopped
+
