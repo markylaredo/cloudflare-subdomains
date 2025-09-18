@@ -19,8 +19,8 @@ fi
 
 echo "Current remote URL: $current_url"
 
-# Check if URL is malformed (missing username)
-if [[ $current_url == *"github.com//" ]]; then
+# Check if URL is malformed (missing username or has double slash)
+if [[ $current_url == *"github.com//" ]] || [[ $current_url != *"github.com/"* ]]; then
     echo ""
     echo "Remote URL appears to be malformed (missing username)"
     read -p "Enter your GitHub username: " github_username
