@@ -70,6 +70,20 @@ You can also manually save changes:
 ./save-to-github.sh
 ```
 
+### Monitoring Repository Status
+
+Check the current status of your repository:
+```bash
+./status.sh
+```
+
+This script shows:
+- Current branch
+- Repository status (changes, untracked files)
+- Last commit information
+- Configured subdomains
+- Remote repository information
+
 ## How it works
 
 1. The `subdomains.json` file contains a list of all your subdomains and their corresponding services
