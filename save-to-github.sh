@@ -31,6 +31,8 @@ if git remote get-url origin > /dev/null 2>&1; then
 else
     echo "No remote repository configured. Changes committed locally."
     echo "To set up GitHub integration, run:"
+    echo "./setup-github.sh"
+    echo "Or manually set up with:"
     echo "git remote add origin <your-github-repo-url>"
     echo "git push -u origin master"
 fi
