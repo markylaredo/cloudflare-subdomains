@@ -43,12 +43,27 @@ Run the setup script:
 ./setup-github.sh
 ```
 
-This script will:
-1. Install and configure the GitHub CLI (if not already installed)
-2. Create a new repository for your subdomain configuration
-3. Push your current configuration to GitHub
+This script requires the GitHub CLI to be installed. If you don't have it installed, you can:
 
-### Manual Setup
+1. Install the GitHub CLI: https://github.com/cli/cli#installation
+2. Or use the manual setup method below
+
+### Manual Setup (Alternative)
+
+If you prefer to set up GitHub integration manually or don't want to install the GitHub CLI:
+
+```bash
+./setup-github-manual.sh
+```
+
+This script will guide you through:
+1. Creating a new repository on GitHub
+2. Configuring the remote repository
+3. Pushing your current configuration to GitHub
+
+### Manual Setup (Direct)
+
+You can also set up GitHub integration directly:
 
 1. Create a new repository on GitHub
 2. Run the following commands:

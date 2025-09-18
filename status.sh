@@ -18,7 +18,11 @@ echo ""
 
 # Show git status
 echo "Repository status:"
-git status --short
+if [ -z "$(git status --short)" ]; then
+    echo "Working directory is clean"
+else
+    git status --short
+fi
 echo ""
 
 # Show last commit
@@ -36,7 +40,14 @@ echo ""
 if git remote get-url origin > /dev/null 2>&1; then
     echo "Remote repository:"
     git remote -v | grep origin
+    echo ""
+    echo "To manually push changes to GitHub:"
+    echo "git push origin $(git branch --show-current)"
 else
     echo "No remote repository configured"
-    echo "To set up GitHub integration, run: ./setup-github.sh"
+    echo ""
+    echo "To set up GitHub integration:"
+    echo "  Automated: ./setup-github.sh (requires GitHub CLI)"
+    echo "  Manual:    ./setup-github-manual.sh"
+    echo "  Direct:    git remote add origin <your-github-repo-url>"
 fi

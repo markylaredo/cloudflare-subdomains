@@ -32,12 +32,21 @@ if ! gh auth status &> /dev/null; then
     gh auth login
 fi
 
+# Get GitHub username
+username=$(gh api user | python3 -c "import sys, json; print(json.load(sys.stdin)['login'])" 2>/dev/null)
+
+if [ -z "$username" ]; then
+    echo "Error: Could not retrieve GitHub username"
+    echo "Please make sure you're logged in to GitHub CLI:"
+    echo "gh auth login"
+    exit 1
+fi
+
 # Create repository if it doesn't exist
 repo_name="cloudflare-subdomains"
-username=$(gh api user | jq -r '.login')
 
 echo "Creating repository $username/$repo_name..."
-gh repo create "$username/$repo_name" --public --clone 2>/dev/null || echo "Repository may already exist"
+gh repo create "$username/$repo_name" --public --clone 2>/dev/null || echo "Repository may already exist or creation failed"
 
 # Set up remote if not already set
 if ! git remote get-url origin &> /dev/null; then
@@ -51,13 +60,18 @@ if [ -z "$(git status --porcelain)" ]; then
 else
     echo "Making initial commit..."
     git add .
-    git commit -m "Initial commit: Cloudflare subdomain configuration system"
-    git branch -M main
+    git commit -m "Initial commit: Cloudflare subdomain configuration system" 2>/dev/null || echo "Commit may already exist"
+fi
+
+# Set branch name to main if it's master
+current_branch=$(git branch --show-current)
+if [ "$current_branch" = "master" ]; then
+    git branch -m main 2>/dev/null || echo "Branch rename may not be needed"
 fi
 
 # Push to GitHub
 echo "Pushing to GitHub..."
-git push -u origin main
+git push -u origin main 2>/dev/null || git push -u origin master 2>/dev/null || echo "Push failed, please check your repository settings"
 
 echo ""
 echo "GitHub integration set up successfully!"
