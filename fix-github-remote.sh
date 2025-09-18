@@ -23,12 +23,9 @@ echo "Current remote URL: $current_url"
 if [[ $current_url == *"github.com//" ]] || [[ $current_url == "https://github.com//cloudflare-subdomains.git" ]]; then
     echo ""
     echo "Remote URL appears to be malformed (missing username)"
-    read -p "Enter your GitHub username: " github_username
-    
-    if [ -z "$github_username" ]; then
-        echo "Username is required"
-        exit 1
-    fi
+    # Use default username if not provided
+    github_username="markylaredo"
+    echo "Using default username: $github_username"
     
     # Set the correct remote URL
     new_url="https://github.com/$github_username/cloudflare-subdomains.git"
