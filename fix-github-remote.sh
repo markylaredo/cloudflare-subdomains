@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# Script to fix the GitHub remote URL
+
+echo "Fix GitHub Remote URL"
+echo "===================="
+echo ""
+
+# Get current remote URL
+current_url=$(git remote get-url origin 2>/dev/null)
+
+if [ -z "$current_url" ]; then
+    echo "No remote repository configured"
+    echo "Please set up GitHub integration using:"
+    echo "  ./setup-github.sh (requires GitHub CLI)"
+    echo "  ./setup-github-manual.sh (interactive manual setup)"
+    exit 1
+fi
+
+echo "Current remote URL: $current_url"
+
+# Check if URL is malformed (missing username)
+if [[ $current_url == *"github.com//" ]]; then
+    echo ""
+    echo "Remote URL appears to be malformed (missing username)"
+    read -p "Enter your GitHub username: " github_username
+    
+    if [ -z "$github_username" ]; then
+        echo "Username is required"
+        exit 1
+    fi
+    
+    # Set the correct remote URL
+    new_url="https://github.com/$github_username/cloudflare-subdomains.git"
+    echo "Setting remote URL to: $new_url"
+    git remote set-url origin "$new_url"
+    
+    echo "Remote URL updated successfully!"
+else
+    echo "Remote URL appears to be correct"
+fi
+
+echo ""
+echo "Current remote URLs:"
+git remote -v

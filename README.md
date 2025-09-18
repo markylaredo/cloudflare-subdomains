@@ -68,10 +68,22 @@ You can also set up GitHub integration directly:
 1. Create a new repository on GitHub
 2. Run the following commands:
    ```bash
-   git remote add origin <your-github-repo-url>
+   git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
    git branch -M main
    git push -u origin main
    ```
+
+### Fixing Remote URL Issues
+
+If you see a malformed remote URL (missing username), you can fix it with:
+```bash
+./fix-github-remote.sh
+```
+
+This script will:
+1. Check the current remote URL
+2. Help you fix it if it's malformed
+3. Update it with your correct GitHub username
 
 ### How It Works
 
