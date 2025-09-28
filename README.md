@@ -146,6 +146,33 @@ This script checks:
 4. The `create-dns-records.sh` script automatically creates DNS records in Cloudflare
 5. The `list-subdomains.sh` script shows all currently configured subdomains
 6. The `Makefile` provides convenient commands for common operations
+7. The `auto-update-config.sh` script monitors `subdomains.json` for changes and automatically updates the configuration (requires inotify-tools)
+
+## Automatic Configuration Updates
+
+The system includes auto-update features that monitor your `subdomains.json` file for changes and automatically update the tunnel configuration.
+
+### Two Options Available:
+
+**Option 1: Real-time Monitoring** (requires inotify-tools)
+```bash
+# Install prerequisite (Ubuntu/Debian):
+sudo apt-get install inotify-tools
+
+# Start monitoring:
+./auto-update-config.sh &
+```
+
+**Option 2: Manual Updates** (no additional packages needed)
+```bash
+# Manual update:
+./manual-update-config.sh
+
+# Or using make:
+make manual-update
+```
+
+For detailed usage instructions, see `AUTO_UPDATE_GUIDE.md`
 
 ## Adding new subdomains
 
