@@ -8,4 +8,6 @@ ingress:
     service: http://192.168.8.152:3001
   - hostname: testapp.solodevmark.com
     service: http://192.168.8.152:3002
+  - hostname: newapp.solodevmark.com
+    service: http://192.168.8.152:4000
   - service: http_status:404
