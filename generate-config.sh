@@ -16,14 +16,14 @@ ingress:
 EOF
 
 # Read subdomains from JSON and add them to config
-python3 -c '
+python3 << EOF >> $CONFIG_FILE
 import json
-with open("'"$SUBDOMAINS_FILE"'") as f:
+with open('$SUBDOMAINS_FILE') as f:
     data = json.load(f)
-    for subdomain in data["subdomains"]:
-        print(f"  - hostname: {subdomain[\"name\"]}.solodevmark.com")
-        print(f"    service: http://{subdomain[\"host\"]}:{subdomain[\"port\"]}")
-' >> $CONFIG_FILE
+    for subdomain in data['subdomains']:
+        print('  - hostname: {}.solodevmark.com'.format(subdomain['name']))
+        print('    service: http://{}:{}'.format(subdomain['host'], subdomain['port']))
+EOF
 
 # Add default 404 rule
 echo "  - service: http_status:404" >> $CONFIG_FILE
