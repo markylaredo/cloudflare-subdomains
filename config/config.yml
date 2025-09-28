@@ -2,12 +2,6 @@ tunnel: c875878d-99ae-4550-9f1b-03bdac260c88
 credentials-file: /etc/cloudflared/c875878d-99ae-4550-9f1b-03bdac260c88.json
 
 ingress:
-  - hostname: deploy.solodevmark.com
-    service: http://192.168.8.152:3000
-  - hostname: infatrack.solodevmark.com
-    service: http://192.168.8.152:3001
-  - hostname: testapp.solodevmark.com
-    service: http://192.168.8.152:3002
-  - hostname: newapp.solodevmark.com
-    service: http://192.168.8.152:4000
+  - hostname: infratrack.solodevmark.com
+    service: http://192.168.8.52:3001
   - service: http_status:404
